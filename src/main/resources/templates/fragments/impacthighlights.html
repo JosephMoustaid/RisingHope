@@ -1,0 +1,47 @@
+
+<div th:fragment="impacthighlights">
+    <div class="impact-wrapper">
+        <div class="section-title">
+            <p class="feature-label" data-aos="fade-up"><i class="fa-solid fa-hand-holding-heart"></i> <span th:text="#{home.highlights.helper}"></span></p>
+            <h2 th:text="#{home.highlights.title}" data-aos="fade-up"></h2>
+            <p class="description" data-aos="fade-up" th:text="#{home.highlights.text}">
+            </p>
+        </div>
+
+        <div class="impact-grid">
+            <!-- Left block -->
+            <div class="impact-item" data-aos="fade-up">
+                <img src="/images/healthcare.jpg"  class="shadow" alt="Healthcare Support">
+                <div class="text-block">
+                    <i class="fa-solid fa-hand-holding-medical"></i>
+                    <h3 class="percentage">96%</h3>
+                    <h4 th:text="#{home.highlights.healthcare.title}"></h4>
+                    <p th:text="#{home.highlights.healthcare.text}"></p>
+                </div>
+            </div>
+
+            <!-- Middle block -->
+            <div class="impact-item reverse"  data-aos="fade-down">
+                <img src="/images/education.jpg"  class="shadow" alt="Education Support">
+                <div class="text-block">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <h3 class="percentage">94%</h3>
+                    <h4 th:text="#{home.highlights.education.title}"></h4>
+                    <p th:text="#{home.highlights.education.text}"></p>
+                </div>
+            </div>
+
+            <!-- Right block -->
+            <div class="impact-item" data-aos="fade-up">
+                <img src="/images/food.jpg" class="shadow" alt="Food Support">
+                <div class="text-block">
+                    <i class="fa-solid fa-bowl-rice"></i>
+                    <h3 class="percentage">95%</h3>
+                    <h4 th:text="#{home.highlights.food.title}"></h4>
+                    <p th:text="#{home.highlights.food.text}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

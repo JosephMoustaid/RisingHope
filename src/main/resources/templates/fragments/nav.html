@@ -1,0 +1,118 @@
+
+<div th:fragment="nav">
+
+    <nav class="navbar navbar-expand-lg shadow p-2 px-md-5 rounded-bottom-5" style="background-color: #e3f2fd;">
+        <a class="navbar-brand d-flex flex-row" th:href="@{/home}">
+            <img th:src="@{/images/2-removebg-preview.png}" alt="Logo" width="60" height="60" class="d-inline-block align-top mt-2" style="object-fit: cover;" />
+            <div class="d-flex flex-column mt-3">
+                <span class="fs-6 fw-bolder">Rising hope</span>
+                <span class="fs-6">Foundation</span>
+            </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item me-2 mb-2 mb-sm-0">
+                    <a class="nav-link" th:href="@{/charities}" th:text="#{nav.charities}"></a>
+                </li>
+                <li class="nav-item me-2 mb-2 mb-sm-0">
+                    <a class="nav-link" th:href="@{/faq}" th:text="#{nav.faq}" ></a>
+                </li>
+                <li class="nav-item me-2  mb-2 mb-sm-0">
+                    <a class="nav-link" th:href="@{/home#howtohelp}" th:text="#{nav.howToHelp}"></a>
+                </li>
+                <li class="nav-item me-2  mb-2 mb-sm-0">
+                    <a class="nav-link" th:href="@{/contact}" th:text="#{common.cotactUs}"></a>
+                </li>
+                <li class="nav-item dropdown me-2  mb-2 mb-sm-0">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false" th:text="#{categories}">
+
+                    </a>
+                    <ul class="dropdown-menu columns-3 mb-2 mb-sm-0" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" th:href="@{/charities(category=EDUCATION)}" th:text="#{categories.education}"></a></li>
+                        <li><a class="dropdown-item" th:href="@{/charities(category=HEALTH)}" th:text="#{categories.health}"></a></li>
+                        <li><a class="dropdown-item" th:href="@{/charities(category=FOOD)}" th:text="#{categories.food}"></a></li>
+                        <li><a class="dropdown-item" th:href="@{/charities(category=ENVIRONMNET)}" th:text="#{categories.environment}"></a></li>
+                        <li><a class="dropdown-item" th:href="@{/charities(category=ZAKAT)}" th:text="#{categories.zakat}"></a></li>
+                        <li><a class="dropdown-item" th:href="@{/charities(category=ANIMALS)}"th:text="#{categories.animals}"></a></li>
+                        <li><a class="dropdown-item" th:href="@{/charities(category=POVERTY)}" th:text="#{categories.poverty}"></a></li>
+                        <li><a class="dropdown-item" th:href="@{/charities(category=WATER)}" th:text="#{categories.water}"></a></li>
+                        <li><a class="dropdown-item" th:href="@{/charities(category=DISASTERRELIEF)}" th:text="#{categories.disasterRelief}"></a></li>
+                        <li><hr class="dropdown-divider"/></li>
+                        <li><a class="dropdown-item" th:href="@{/categories}" th:text="#{categories.all}"></a></li>
+                    </ul>
+
+                </li>
+
+
+
+                <li th:if="${true and userType == 'organization'}" class="nav-item">
+                    <a class="nav-link" th:href="@{/dashboard}" th:text="#{dashboard}"></a>
+                </li>
+            </ul>
+
+            <!-- Auth Dropdown -->
+            <div th:if="${connected != null and connected}" class="dropdown  mb-2 mb-sm-0">
+                <button class="button slide-to-rigth-btn primary dropdown-toggle" type="button" id="authDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="slide-to-right-span"><i class="fa-solid fa-user"></i> Account</span>
+                </button>
+                <ul class="dropdown-menu "   aria-labelledby="authDropdown">
+                    <li>
+                        <a class="dropdown-item" th:href="@{/profile}">
+                            <i class="fa-solid fa-user"></i> <span th:text="#{common.profile}"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" th:href="@{/auth/logout}">
+                            <i class="fa-solid fa-right-from-bracket"></i> <span th:text="#{common.logout}"></span>
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a class="dropdown-item" th:href="@{/auth/register/user}">
+                            <i class="fa-solid fa-hand-holding-dollar"></i> <span th:text="#{joinAsADonor}" ></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" th:href="@{/auth/register/organization}">
+                            <i class="fa-solid fa-building"></i> <span th:text="#{register.createAccAsOrg}" ></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <!-- Auth Dropdown -->
+            <div th:if="${connected != null and !connected}" class=" mb-2 mb-sm-0 me-3">
+                <a th:href="@{/auth/login}" class="button slide-to-rigth-btn primary fs-6 py-2 px-3">
+                    <span class="slide-to-right-span"><i class="fa-solid fa-right-from-bracket"></i> <span th:text="#{common.login}"></span> </span>
+                </a>
+            </div>
+
+
+            <div class="d-flex justify-content-center align-items-center ">
+                <a class="nav-link dropdown-toggle" href="#" id="langDropDown" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false" th:text="${currentLang == 'en' ? 'English' : (currentLang == 'ar' ? 'العربية' : 'Français')}">
+                    <!-- The displayed language will be dynamically set based on the saved language -->
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end mb-2 mb-sm-0" aria-labelledby="langDropDown">
+                    <li><a class="dropdown-item" href="?lang=en" >English</a></li>
+                    <li><a class="dropdown-item" href="?lang=ar" >العربية</a></li>
+                    <li><a class="dropdown-item" href="?lang=fr" >Français</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+</script>

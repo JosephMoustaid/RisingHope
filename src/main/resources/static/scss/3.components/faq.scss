@@ -1,0 +1,124 @@
+@use "../_variables.scss" as *;
+
+.faq-section {
+  padding: 4rem 2rem;
+  background: #fff;
+  max-width: 1200px;
+    margin: 0 auto;
+  .faq-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    .faq-left {
+      flex: 1;
+
+      .section-label {
+        color: $primary-color;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+      }
+
+      .heading {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #111;
+        margin-bottom: 2rem;
+      }
+
+      .faq-accordion {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .faq-item {
+          background: #f6f6f6;
+          border-radius: 10px;
+          padding: 1rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &.active {
+            background: $primary-color;
+            color: #fff;
+
+            .faq-answer {
+              margin-top: 0.5rem;
+              color: #fdfdfd;
+              font-size: 0.95rem;
+            }
+
+            .arrow {
+              transform: rotate(180deg);
+            }
+          }
+
+          .faq-question {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+          }
+
+          .arrow {
+            transition: transform 0.3s;
+          }
+        }
+      }
+    }
+
+    .faq-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+
+      .main-img {
+        position: relative;
+
+        img {
+          border-radius: 20px;
+          width: 100%;
+          height: auto;
+        }
+
+        .mini-img {
+          position: absolute;
+          bottom: -20px;
+          right: -20px;
+          border-radius: 15px;
+          overflow: hidden;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          width: 150px;
+
+          img {
+            width: 100%;
+            height: auto;
+            display: block;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+
+      .faq-left,
+      .faq-right {
+        flex: none;
+        width: 100%;
+      }
+
+      .faq-left {
+        text-align: center;
+      }
+
+      .faq-right {
+        margin-top: 2rem;
+      }
+    }
+  }
+}

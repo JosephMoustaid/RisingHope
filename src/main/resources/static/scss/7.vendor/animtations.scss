@@ -1,0 +1,34 @@
+/* General Image Hover Effect */
+.img-hover-effect {
+    border-radius: 10px;
+    transition: transform 0.7s ease;
+  
+    &:hover {
+      transform: scale(1.05); // Make it hover on scale
+    }
+  }
+  
+  /* Button Hover Effects */
+  .btn-hover-effect {
+    transition: transform 0.6s ease, background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #0056b3;
+      transform: scale(1.05); // Button scale effect on hover
+    }
+  }
+  
+  /* Section Animation on Enter */
+  .section-animation {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.2s ease-out, transform 0.6s ease-out;
+  
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+
+  

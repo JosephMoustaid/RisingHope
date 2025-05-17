@@ -1,0 +1,151 @@
+@use "../_variables.scss" as *;
+
+.donate-section {
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  position: relative;
+  background-color: #f8f8f8;
+
+  .background {
+    position: relative;
+    flex: 1;
+    min-width: 300px;
+    max-width: 800px;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color:  $primary-color;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .donate-box {
+    background-color: #fff;
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    max-width: 450px;
+    width: 100%;
+    margin-left: -3rem;
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+
+    .label {
+      font-weight: 600;
+      color:  $primary-color;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+
+      i {
+        margin-right: 0.4rem;
+      }
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0b0b2e;
+      margin-bottom: 1rem;
+    }
+
+    .subtext {
+      color: #7c7c7c;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .notice {
+      background-color: #f5f5f5;
+      padding: 1rem;
+      border-radius: 0.6rem;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      color: #444;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+
+      i {
+        color:  $primary-color;
+        font-size: 1.2rem;
+        margin-top: 0.2rem;
+      }
+    }
+
+    .donation-input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .amounts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+
+      button {
+        padding: 0.7rem;
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+        font-size: 0.95rem;
+        cursor: pointer;
+        background-color: white;
+        transition: all 0.2s ease;
+
+        &.active {
+          background-color:  $primary-color;
+          color: white;
+          border: none;
+        }
+
+        &:hover {
+          background-color: #ffe6d5;
+        }
+      }
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 0.9rem;
+      background-color:  $primary-color;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 0.8rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color:  $middark-color;
+      }
+    }
+  }
+}

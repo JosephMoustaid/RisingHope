@@ -1,0 +1,46 @@
+<div th:fragment="hero">
+<div class="hero-section position-relative overflow-hidden"  style="background: transparent !important;">
+        <div class="hero-images d-flex">
+            <div class="hero-image-container w-100">
+                <img
+                        src="/banner/babyInGaza.webp"
+                        alt="Infant in Gaza needing medical care"
+                        class="hero-image h-100 w-100 object-fit-cover rounded-bottom-5"
+                        loading="lazy"
+                />
+                <div class="image-overlay"></div>
+            </div>
+        </div>
+
+        <div class="hero-content position-absolute d-flex flex-column justify-content-center text-start top-50 start-50 translate-middle text-white w-100 px-3">
+            <h1 class="display-4 fw-bold mb-3"  data-aos="fade-right" th:text="#{home.hero.title}"></h1>
+            <p class="lead mb-4 fs-3" data-aos="fade-right" style="max-width: 800px ; margin: 0 "  th:text="#{home.hero.text}">
+            </p>
+
+            <div class="d-flex justify-content-start gap-3 flex-wrap">
+                <button class="button shadow" data-aos="fade-up" >
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                    <span th:text="#{home.donate.helper}"></span></button>
+                <button class="secondary-button shadow"  data-aos="fade-up">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    <span th:text="#{common.register}"></span>
+                </button>
+            </div>
+
+            <div class="impact-stats d-flex justify-content-end gap-5 mt-5 flex-wrap">
+                <div class="stat-item" data-aos="zoom-in-up">
+                    <div class="stat-number fs-1 fw-bold">12,540+</div>
+                    <div class="stat-label" th:text="#{stats.lifeTimeDonations}"></div>
+                </div>
+                <div class="stat-item" data-aos="zoom-in-up">
+                    <div class="stat-number fs-1 fw-bold">$3.2M+</div>
+                    <div class="stat-label" th:text="#{stats.totalRaised}"></div>
+                </div>
+                <div class="stat-item" data-aos="zoom-in-up">
+                    <div class="stat-number fs-1 fw-bold">89</div>
+                    <div class="stat-label" th:text="#{stats.totalPrograms}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

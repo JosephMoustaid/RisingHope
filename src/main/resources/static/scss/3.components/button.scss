@@ -1,0 +1,178 @@
+@use "../_variables" as *;
+
+
+.button {
+    position: relative;
+    background-color: $primary-color;
+    color: $light-color;
+    padding: 0.75rem 1.75rem;
+    text-decoration: none;
+    font-size: 1rem;
+
+    font-weight: 500;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease-out;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%; /* Start with 0% width */
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 50%);
+        transform: translateX(0); /* No initial translation */
+        transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+        z-index: 0;
+    }
+
+    &:hover {
+        background-color: darken($primary-color, 8%);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        // transform: translateY(-2px);
+
+        &::before {
+            width: 100%; /* Expand to full width */
+            transform: translateX(0); /* Ensure no translation */
+        }
+    }
+
+    &:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.3);
+    }
+    @media (max-width: 768px) {
+        padding: 0.5rem 1.5rem;
+        font-size: 0.8rem !important;
+        border-radius: 20px;
+        &::before {
+            height: 100%;
+            width: 0%;
+        }
+    }
+}
+
+.danger{
+    background-color: $danger-color !important;
+    color: $light-color;
+}
+.secondary-button {
+    @extend .button;
+    background-color: $secondary-color;
+    color: $dark-color;
+    border: 1px solid rgba($dark-color, 0.2);
+    
+    &:hover {
+        background-color: darken($secondary-color, 5%);
+        color: darken($dark-color, 10%);
+        border-color: rgba($dark-color, 0.3);
+    }
+    
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($secondary-color, 0.3);
+    }
+}
+
+.danger-button {
+    @extend .button;
+    background-color: $danger-color;
+    
+    &:hover {
+        background-color: darken($danger-color, 10%);
+    }
+    
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($danger-color, 0.3);
+    }
+}
+
+// For the hero section specifically
+.hero-cta-button {
+    @extend .button;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.hero-secondary-button {
+    @extend .secondary-button;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        background-color: $secondary-color;
+        color: $dark-color;
+    }
+}
+
+.sec-button{
+    &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        transform: translateY(-2px);
+
+        &::before {
+            transform: translateX(0);
+        }
+    }
+}
+
+
+.slide-to-rigth-btn {
+    position: relative;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    overflow: hidden;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.slide-to-rigth-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: #1c1f1e;
+    z-index: 1;
+    transition: width 0.3s ease;
+}
+
+.slide-to-rigth-btn:hover::before {
+    width: 100%;
+}
+
+.slide-to-rigth-btn .slide-to-right-span {
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.slide-to-rigth-btn:hover .slide-to-right-span {
+    color: #fff !important;
+}

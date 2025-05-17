@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <title th:text="#{login.orgLogin}"></title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <!-- AOS CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+</head>
+<body>
+
+<div class="login-page min-vh-100 d-flex align-items-center" style=" background-color: #f8f9fa">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <a href="/home">
+                            <div class="d-flex justify-content-center mb-4">
+                                <img src="/images/logo.png" alt="Logo" width="150" />
+                            </div>
+                        </a>
+                        <h2 class="text-center mb-4 fw-bold text-primary" th:text="#{login.orgLogin}"></h2>
+                        <form  method="post"
+                               th:action="@{/auth/login/organization}"
+                               th:object="${loginForm}" onsubmit="prepareForm()">
+                            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+                            <div class="mb-3">
+                                <label htmlFor="email" class="form-label" th:text="#{login.email}"> </label>
+                                <input
+                                        th:field="*{email}"
+                                        type="email"
+                                        name="email"
+                                        class="form-control form-control-lg"
+                                        id="email"
+                                        placeholder="name@example.com"
+                                />
+                                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">Email Error</div>
+                            </div>
+                            <div class="mb-4">
+                                <label htmlFor="password" class="form-label" th:text="#{login.password}"></label>
+                                <input
+                                        th:field="*{password}"
+                                        type="password"
+                                        name="password"
+                                        class="form-control form-control-lg"
+                                        id="password"
+                                        placeholder="••••••••"
+                                />
+                                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">Password Error</div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <Link to="/forgot-password" class="text-decoration-none text-muted " style="cursor : help">
+                                <span th:text="#{login.forgot}"></span>
+                                </Link>
+                            </div>
+
+                            <div class="text-center mt-3">
+                                <button class="button shadow w-100 py-3 fw-bolder " type="submit">
+                                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                                    <span th:text="#{login.signin}"></span>
+                                </button>
+                            </div>
+                            <p class="text-center mt-4 text-muted">
+                                <span th:text="#{login.noAccount}"></span>
+                                <a href="/auth/register/user" class="text-primary text-decoration-none">
+                                    <span th:text="#{login.orgLogin}"></span>
+                                </a> <br /> <hr/>
+                            <a href="/auth/register/organization" class="w-100 text-primary text-decoration-none text-center">
+                                <span th:text="#{register.createAccAsOrg}"></span>
+                            </a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    // Initialize AOS (Animate On Scroll)
+    AOS.init({
+        duration: 1000, // Animation duration in ms
+        once: true,     // Whether animation should happen only once
+    });
+</script>
+</html>
+

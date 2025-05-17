@@ -1,0 +1,77 @@
+<div th:fragment="faq">
+    <div class="faq-section">
+        <div class="faq-content">
+            <div class="faq-left">
+                <p class="section-label" data-aos="fade-up" th:text="#{home.faq.helper}"></p>
+                <h2 class="heading" data-aos="fade-up" th:text="#{home.faq.title}"></h2>
+
+                <div class="faq-accordion" data-aos="fade-right">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span th:text="#{home.faq.mission.question}"></span>  <span class="arrow">›</span>
+                        </div>
+                        <div class="faq-answer" th:text="#{home.faq.mission.answer}">
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" th:text="#{home.faq.volunteer.question}"> <span class="arrow">›</span></div>
+                        <div class="faq-answer" th:text="#{home.faq.volunteer.answer}">
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" > <span th:text="#{home.faq.donations.question}"></span> <span class="arrow">›</span></div>
+                        <div class="faq-answer" th:text="#{home.faq.donations.answer}">
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question"> <span th:text="#{home.faq.isItLegit.question}"></span><span class="arrow">›</span></div>
+                        <div class="faq-answer" th:text="#{home.faq.isItLegit.answer}">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="faq-right" data-aos="fade-left">
+                <div class="main-img">
+                    <img src="/images/sad.jpg" alt="Main FAQ Image" />
+                    <div class="mini-img">
+                        <img src="/images/sad%20women%20in%20gatza.jpg" alt="Mini FAQ Image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+    </script>
+
+    <style>
+        .faq-item .faq-answer {
+            display: none;
+            padding: 10px 0;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item .arrow {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .arrow {
+            transform: rotate(180deg);
+        }
+    </style>
+</div>
+

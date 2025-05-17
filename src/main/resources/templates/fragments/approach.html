@@ -1,0 +1,41 @@
+<div th:fragment="approach">
+<div class="approach-section rounded-5 mb-2">
+    <div class="content">
+        <div class="text-side" data-aos="fade-right">
+            <p class="section-label" th:text="#{home.approach.helper}"></p>
+            <h2 class="heading" th:text="#{home.approach.title}"></h2>
+            <p class="description" th:text="#{home.approach.text}">
+            </p>
+            <a href="/contact" class="contact-btn button slide-to-rigth-btn">
+                <span class="slide-to-right-span">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+
+                    <span th:text="#{home.contactUs.helper}"></span>
+                </span>
+            </a>
+        </div>
+        <div class="image-side" data-aos="fade-left">
+            <img src="/images/approch.jpg" alt="Helping children" />
+        </div>
+    </div>
+
+    <div class="cards shadow" data-aos="zoom-in-up">
+        <div class="card border-end rounded-5"  >
+            <div class="icon mission-icon"></div>
+            <h3 th:text="#{home.approach.mission.title}"></h3>
+            <p th:text="#{home.approach.mission.text}"></p>
+        </div>
+        <div class="card border-end rounded-5" >
+            <div class="icon vision-icon"></div>
+            <h3 th:text="#{home.approach.vision.title}"></h3>
+            <p th:text="#{home.approach.vision.text}"></p>
+        </div>
+        <div class="card rounded-5 " >
+            <div class="icon value-icon"></div>
+            <h3 th:text="#{home.approach.values.title}"></h3>
+            <p th:text="#{home.approach.values.text}"></p>
+        </div>
+    </div>
+</div>
+
+</div>

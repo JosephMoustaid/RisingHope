@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{register.userRegTitle}"></title>
+
+    <link rel="icon" href="/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <!-- AOS CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+</head>
+<body>
+
+
+
+
+<div class="register min-vh-100 d-flex align-items-center">
+    <div class="container-fluid min-vh-100 p-0">
+        <div class="row g-0">
+
+            <div class="col-lg-6 d-none d-lg-block">
+                <div
+                        class="register-hero h-100 position-relative"
+                        style="background-image: url('/images/register.jpg')"
+                >
+                    <div class="hero-overlay position-absolute start-0 top-0 w-100 h-100"></div>
+                    <div class="hero-content position-relative text-white p-5">
+                        <h2 class="display-5 fw-bold mb-4">
+                            <img src="/images/2-removebg-preview.png" width="200"  class="ms-2" style="border-radius: 50%" alt="Community"  />
+                            <span th:text="#{register.heroTitle}"> </span>
+                        </h2>
+
+                        <p class="lead fw-bold" th:text="#{register.heroTitle}">
+
+                        </p>
+                        <div class="mt-5 fw-bold">
+                            <h5 class="mb-3" th:text="#{register.why}"></h5>
+                            <ul >
+                                <li th:text="#{register.reason1}"></li>
+                                <li th:text="#{register.reason2}"></li>
+                                <li th:text="#{register.reason3}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 bg-light d-flex align-items-center right-section">
+                <div class="p-5 w-100">
+                    <div class="d-flex justify-content-center ">
+                        <img src="/images/banner-log-black-text.png" alt="Logo" class="mb-4" width="200" />
+                    </div>
+
+                    <form class="mx-auto" style="max-width: 400px "
+                          th:action="@{/auth/user/register}" th:object="${user}" method="post" onsubmit="prepareForm()"
+                          novalidate >
+                    <div th:if="${#fields.hasErrors('*')}"  class="alert alert-danger">
+                        <h5 th:text="#{register.errorsTitle}"></h5>
+                        <ul>
+                            <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
+                    <div class="mb-3">
+                        <label htmlFor="name" class="form-label" th:text="#{register.firstname}"></label>
+                        <input
+                                type="text"
+                                th:field="*{firstname}"
+                                class="form-control form-control-lg"
+                                id="firstname"
+                        />
+                        <div th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="text-danger"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label htmlFor="name" class="form-label" th:text="#{register.lastname}"></label>
+                        <input
+                                th:field="*{lastname}"
+                                type="text"
+                                class="form-control form-control-lg"
+                                id="lastname"
+                        />
+                        <div th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="text-danger"></div>
+                    </div>
+                        <div class="mb-3">
+                            <label for="gender" class="form-label"><span th:text="#{register.gender}"></span> <span class="text-danger">*</span></label>
+                            <select class="form-select form-select-lg" id="gender" th:field="*{gender}" required>
+                                <option value="" selected th:text="#{register.gender}"></option>
+                                <option th:each="genderOpt : ${T(spring.charityapp.common.Gender).values()}"
+                                        th:value="${genderOpt}"
+                                        th:text="${genderOpt}">
+                                </option>
+                            </select>
+                            <div th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="text-danger"></div>
+                        </div>
+
+                    <div class="mb-3">
+                        <label htmlFor="email" class="form-label" th:text="#{register.email}"></label>
+                        <input
+                                type="email"
+                                class="form-control form-control-lg"
+                                id="email"
+                                th:field="*{email}"
+                        />
+                        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label htmlFor="password" class="form-label" th:text="#{register.password}"></label>
+                        <input
+                                type="password"
+                                class="form-control form-control-lg"
+                                id="password"
+                                th:field="*{password}"
+                        />
+                        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label htmlFor="confirmPassword" class="form-label" th:text="#{register.confirmPassword}"></label>
+                        <input
+                                type="password"
+                                class="form-control form-control-lg"
+                                id="confirmPassword"
+                                th:field="*{confirmPassword}"
+                        />
+                        <div th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="text-danger"></div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button class="button slide-to-rigth-btn shadow w-100 py-3 fw-bolder" type="submit">
+                            <span class="slide-to-right-span">
+                                <i class="fa-solid fa-plus"></i>
+                                <span th:text="#{register.createAccount}"></span>
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="text-center mt-3">
+
+                        <button class="btn  sec-button shadow w-100 py-3 fw-bolder"  type="button">
+                            <img src="/icons/google.webp" alt="Google" width="20" class="me-2" />
+                            <span th:text="#{register.google}"></span>
+                        </button>
+                    </div>
+
+                    <p class="text-center mt-4 text-muted">
+                        <span th:text="#{register.haveAccount}"></span>
+                        <a href="/auth/login/user" class="text-primary text-decoration-none">
+                            <span th:text="#{register.signin}"></span>
+                        </a>
+                    </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    // Initialize AOS (Animate On Scroll)
+    AOS.init({
+        duration: 1000, // Animation duration in ms
+        once: true,     // Whether animation should happen only once
+    });
+</script>
+</html>

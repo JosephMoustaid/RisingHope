@@ -1,0 +1,44 @@
+
+
+@use "./_variables.scss";
+
+
+@use "../../../../../node_modules/bootstrap/scss/bootstrap";
+
+@use "./1.base/base.scss";
+
+@use "./2.typography/typography";
+// --
+@use "./3.components/nav.scss";
+@use "./3.components/footer.scss";
+@use "./3.components/button.scss";
+
+@use "./3.components/hero.scss";
+
+@use "./3.components/donation-card.scss";
+
+@use "./5.pages/register.scss";
+
+@import "./3.components/denotation-impact.scss";
+
+@import "./3.components/help-card.scss";
+
+@import "./3.components/impacthighlights.scss";
+
+@import "./3.components/whatwedo.scss";
+
+@import "./3.components/donatesection.scss";
+
+@import "./3.components/approach.scss";
+
+@import "./3.components/faq.scss";
+
+@import "./3.components/contact.scss";
+
+@import "./3.components/organization.scss";
+
+@import "./3.components/charity-program-details.scss";
+
+@import "./5.pages/home.scss";
+
+@import "./5.pages/profile.scss";

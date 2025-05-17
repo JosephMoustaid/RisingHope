@@ -1,0 +1,108 @@
+/*
+Error: Undefined variable: "$primary-color".
+        on line 86 of /home/youssefmoustaid/Desktop/my-projects/Charity App/charityapp/src/main/resources/static/scss/3.components/organization.scss
+
+81:       .stat {
+82:         flex: 1;
+83: 
+84:         h3 {
+85:           font-size: 2.5rem;
+86:           color:$primary-color
+87:         }
+88: 
+89:         p {
+90:           font-size: 1rem;
+91:           margin-top: 0.5rem;
+
+Backtrace:
+/home/youssefmoustaid/Desktop/my-projects/Charity App/charityapp/src/main/resources/static/scss/3.components/organization.scss:86
+uri:classloader:/gems/sass-3.7.4/lib/sass/script/tree/variable.rb:49:in `_perform'
+uri:classloader:/gems/sass-3.7.4/lib/sass/script/tree/node.rb:50:in `perform'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:398:in `visit_prop'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
+org/jruby/RubyArray.java:2577:in `map'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
+org/jruby/RubyArray.java:2577:in `map'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
+org/jruby/RubyArray.java:2577:in `map'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
+org/jruby/RubyArray.java:2577:in `map'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
+org/jruby/RubyArray.java:2577:in `map'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
+uri:classloader:/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+org/jruby/RubyArray.java:2577:in `map'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:161:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:10:in `visit'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/root_node.rb:36:in `css_tree'
+uri:classloader:/gems/sass-3.7.4/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+uri:classloader:/gems/sass-3.7.4/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+uri:classloader:/gems/sass-3.7.4/lib/sass/engine.rb:307:in `render_with_sourcemap'
+uri:classloader:/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:462:in `update_stylesheet'
+uri:classloader:/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+org/jruby/RubyArray.java:1792:in `each'
+uri:classloader:/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+uri:classloader:/gems/sass-3.7.4/lib/sass/plugin.rb:82:in `update_stylesheets'
+<script>:22:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$primary-color\".\A         on line 86 of /home/youssefmoustaid/Desktop/my-projects/Charity App/charityapp/src/main/resources/static/scss/3.components/organization.scss\A \A 81:       .stat {\A 82:         flex: 1;\A 83: \A 84:         h3 {\A 85:           font-size: 2.5rem;\A 86:           color:$primary-color\A 87:         }\A 88: \A 89:         p {\A 90:           font-size: 1rem;\A 91:           margin-top: 0.5rem;"; }

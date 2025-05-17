@@ -1,0 +1,63 @@
+<section class="py-5" th:fragment="impact">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-primary" data-aos="fade-up" th:text="#{home.impact.helper}"></h2>
+                <p class="lead" th:text="#{home.impact.text}" data-aos="fade-up">
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Efficiency Card -->
+                <div class="col-md-6 col-lg-3" data-aos="zoom-in-up">
+                    <div class="impact-card card h-100 border-0 shadow-sm p-4 text-center">
+                        <div class="icon-wrapper mb-3 mx-auto" >
+                            <i class="fas fa-hand-holding-heart fa-2x"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3" th:text="#{home.impact.efficiency.title}"></h4>
+                        <p class="mb-4" th:text="#{home.impact.efficiency.text}">
+
+                        </p>
+                        <div class="impact-number display-4 fw-bold text-primary">90%</div>
+                    </div>
+                </div>
+
+                <!-- Reach Card -->
+                <div class="col-md-6 col-lg-3" data-aos="zoom-in-up">
+                    <div class="impact-card card h-100 border-0 shadow-sm p-4 text-center">
+                        <div class="icon-wrapper mb-3 mx-auto" >
+                            <i class="fas fa-globe fa-2x"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3" th:text="#{home.impact.farReach.title}"></h4>
+                        <p class="mb-4" th:text="#{home.impact.farReach.text}"></p>
+                        <div class="impact-number display-4 fw-bold text-primary">100+</div>
+                    </div>
+                </div>
+
+                <!-- Local Leadership Card -->
+                <div class="col-md-6 col-lg-3" data-aos="zoom-in-up">
+                    <div class="impact-card card h-100 border-0 shadow-sm p-4 text-center">
+                        <div class="icon-wrapper mb-3 mx-auto">
+                            <i class="fas fa-users fa-2x"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3" th:text="#{home.impact.localyLead.title}"></h4>
+                        <p class="mb-4" th:text="#{home.impact.localyLead.text}">
+                        </p>
+                        <div class="impact-number display-4 fw-bold text-primary">95%</div>
+                    </div>
+                </div>
+
+                <!-- Trust Card -->
+                <div class="col-md-6 col-lg-3" data-aos="zoom-in-up">
+                    <div class="impact-card card h-100 border-0 shadow-sm p-4 text-center">
+                        <div class="icon-wrapper mb-3 mx-auto" >
+                            <i class="fas fa-shield-alt fa-2x"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3" th:text="#{home.impact.truster.title}"></h4>
+                        <p class="mb-4" th:text="#{home.impact.truster.text}">
+                        </p>
+                        <div class="impact-number display-4 fw-bold text-primary">30+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

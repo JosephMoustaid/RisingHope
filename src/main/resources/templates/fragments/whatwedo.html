@@ -1,0 +1,44 @@
+<div th:fragment="whatwedo">
+    <div class="what-we-do-section">
+        <div class="content">
+            <div class="text-area">
+                <p class="label"  data-aos="fade-up"><i class="fa-solid fa-hand-holding-heart"></i> <span th:text="#{home.whatWeDo.helper}"></span> </p>
+                <h2 th:text="#{home.whatWeDo.title}"  data-aos="fade-up"></h2>
+
+                <div class="feature"  data-aos="fade-right">
+                    <i class="fa-solid fa-heart-pulse icon"></i>
+                    <div>
+                        <h4 th:text="#{home.whatWeDo.economic.title}"></h4>
+                        <p th:text="#{home.whatWeDo.economic.text}"></p>
+                    </div>
+                </div>
+
+                <div class="feature" data-aos="fade-right">
+                    <i class="fa-solid fa-hand-holding-droplet icon"></i>
+                    <div>
+                        <h4 th:text="#{home.whatWeDo.water.title}"></h4>
+                        <p th:text="#{home.whatWeDo.water.text}"></p>
+                    </div>
+                </div>
+
+                <div class="feature" data-aos="fade-right">
+                    <i class="fa-solid fa-house-chimney icon"></i>
+                    <div>
+                        <h4 th:text="#{home.whatWeDo.house.title}"></h4>
+                        <p th:text="#{home.whatWeDo.house.text}"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-area" data-aos="fade-left">
+                <div class="image-container">
+                    <img src="/images/education.jpg" alt="Children Learning">
+                    <button class="donate-btn"><i class="fa-solid fa-hand-holding-dollar"></i> <span th:text="#{home.donate.helper}"></span></button>
+                    <img src="/images/food.jpg" alt="Child with Heart" class="circle-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

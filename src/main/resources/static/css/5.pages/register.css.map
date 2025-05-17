@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACI,0BAAgB;EACZ,MAAM,EAAE,gBAAgB;;AAG5B,wBAAc;EACV,eAAe,EAAE,gBAAgB;EACjC,mBAAmB,EAAE,iBAAiB;EACtC,iBAAiB,EAAE,oBAAoB;EACvC,MAAM,EAAE,gBAAgB;;AAG5B,uBAAa;EACT,UAAU,EAAE,6EAA6E;EACzF,SAAS,EAAE,0BAA0B;EACrC,KAAK,EAAE,eAAe;EACtB,MAAM,EAAE,gBAAgB;;AAE5B,YAAE;EACE,UAAU,EAAE,MAAM",
+"sources": ["../../scss/5.pages/register.scss"],
+"names": [],
+"file": "register.css"
+}

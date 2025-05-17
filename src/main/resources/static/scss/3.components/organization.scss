@@ -1,0 +1,129 @@
+@use "../_variables.scss" as *;
+
+.organization-page {
+  color: #222;
+
+  .hero {
+    background: url('../../images/image.jpg') center/cover no-repeat;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.55);
+      padding: 2rem;
+      border-radius: 1rem;
+      color: #fff;
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .about,
+  .founder {
+    padding: 4rem 2rem;
+    background-color: #fefefe;
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+
+      .text {
+        flex: 1;
+
+        h2 {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+        }
+
+        p {
+          font-size: 1rem;
+          line-height: 1.6;
+          margin-bottom: 1rem;
+        }
+      }
+
+      .image {
+        flex: 1;
+        img {
+          width: 100%;
+          border-radius: 30px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+
+  .stats {
+    background-color: #f6f6f6;
+    padding: 4rem 2rem;
+
+    .container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 2rem;
+      text-align: center;
+
+      .stat {
+        flex: 1;
+
+        h3 {
+          font-size: 2.5rem;
+          color:$primary-color
+        }
+
+        p {
+          font-size: 1rem;
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+
+  .cta {
+    background-color: $primary-color;
+    color: #fff;
+    text-align: center;
+    padding: 4rem 2rem;
+
+    .container {
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+      }
+
+      .cta-button {
+        background-color: #fff;
+        color: $primary-color;
+        padding: 0.75rem 2rem;
+        border-radius: $border-radius;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background 0.3s;
+
+        &:hover {
+          background-color: #f5f5f5;
+        }
+      }
+    }
+  }
+}

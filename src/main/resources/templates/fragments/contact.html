@@ -1,0 +1,37 @@
+<div th:fragment="contact" >
+    <div class="contact-section rounded-5">
+        <div class="contact-container">
+            <div class="contact-left" data-aos="zoom-in-right">
+                <p class="section-label" th:text="#{home.contactUs.helper}"></p>
+                <h2 class="heading" th:text="#{home.contactUs.title}"></h2>
+                <p class="subtext" th:text="#{home.contactUs.text}"></p>
+
+                <ul class="contact-details">
+                    <li><strong> <span th:text="#{common.email}"></span> <a href="mailto:hello@charity.org">hello@charity.org</a> </strong></li>
+                    <li><strong>  <span th:text="#{common.phone}"></span> <a href="tel:+1234567890">+1 (234) 567-890</a></strong> </li>
+                    <li><strong> <span th:text="#{common.address}"></span> 123 Hope Street, Compassion City</strong> </li>
+                </ul>
+            </div>
+
+            <div class="contact-right" data-aos="zoom-in-left">
+                <form class="contact-form" method="post" th:action="@{/contact/submit}">
+                    <div class="form-group">
+                        <input type="text" name="name"   th:placeholder="#{common.yourName}"  required />
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" th:placeholder="#{common.yourEmail}" required />
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" th:placeholder="#{common.yourMessage}" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button button slide-to-rigth-btn">
+                         <span class="slide-to-right-span">
+                            <i class="fa-solid fa-paper-plane"></i> <span th:text="#{common.sendMessage}"></span>
+                         </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

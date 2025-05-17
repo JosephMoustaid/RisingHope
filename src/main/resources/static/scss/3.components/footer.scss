@@ -1,0 +1,11 @@
+@use "../_variables" as *;
+
+
+footer{
+
+  background-color: $dark-color !important;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  color: $light-color !important;
+  padding: 2rem 0;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "charityapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "sass --watch src/main/resources/static/scss/main.scss:src/main/resources/static/css/styles.css",
+    "build": "sass src/main/scss:src/main/resources/static/css --style compressed",
+    "copy-bootstrap": "cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.js src/main/resources/static/js/"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "sass": "^1.69.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JosephMoustaid/Charity-Application-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JosephMoustaid/Charity-Application-/issues"
+  },
+  "homepage": "https://github.com/JosephMoustaid/Charity-Application-#readme"
+}

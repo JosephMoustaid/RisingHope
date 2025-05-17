@@ -1,0 +1,54 @@
+@use "../_variables" as *;
+
+
+.navbar{
+    background-color: $light-color !important;
+
+    color: $dark-color !important;
+    box-shadow: $box-shadow;
+
+    @media (max-width: 768px) {
+        font-size: .9rem !important;
+    }
+}
+.navbar-toggler{
+    border : none;
+    outline: none;
+    &:hover , &:focus, &:active, &:focus-visible{
+        border: none;
+        outline: none;
+    }
+}
+
+ .dropdown-menu.columns-2 {
+     column-count: 2 !important;
+     column-gap: 1rem !important;
+     min-width: 400px !important;
+ }
+
+.dropdown-menu {
+    .columns-3 {
+        column-count: 3 !important;
+        column-gap: 1rem !important;
+        min-width: 600px !important;
+    }
+}
+
+.dropdown-menu.columns-2 .dropdown-item,
+.dropdown-menu.columns-3 .dropdown-item {
+    white-space: normal !important;
+}
+.navbar-toggler {
+    border: none !important;          /* Remove border */
+    box-shadow: none !important;      /* Remove box shadow */
+    outline: none !important;         /* Remove focus outline */
+    background-color: transparent !important; /* No background */
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:hover {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    background-color: transparent !important;
+}

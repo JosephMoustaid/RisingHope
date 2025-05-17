@@ -1,0 +1,143 @@
+<div th:fragment="charityprogramdetails">
+    <div class="program-details-page">
+        <section class="program-content">
+            <div class="container">
+                <div class="row">
+                    <!-- Main Content -->
+                    <div class="col-12 col-md-6 col-lg-9 shadow rounded-4 p-4 program-main">
+                        <!-- Cover Image -->
+                        <div id="mediaCarousel" class="carousel slide mb-4 shadow rounded-4 overflow-hidden" data-bs-ride="carousel" data-bs-interval="2000" data-aos="fade-up">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active"
+                                     th:if="${charityAction.media != null and !charityAction.media.isEmpty()}"
+                                     th:each="media, iterStat : ${charityAction.media}"
+                                     th:classappend="${iterStat.index == 0} ? 'active'">
+                                    <img class="d-block w-100 cover" th:src="@{${media}}" alt="Media Image" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Progress + Stats -->
+                        <div class="progress-section mb-4" data-aos="fade-up">
+                            <progress max="100"
+                                      th:value="${(charityAction.collectedAmount / charityAction.objectiveAmount) * 100}"
+                                      class="w-100"></progress>
+
+                            <div class="stats d-flex justify-content-around text-center mt-3">
+                                <div>
+                                    <i class="fa-solid fa-circle-check me-2 text-success"></i>
+                                    <strong  th:text="#{donations.raised}" ></strong> :
+                                    <span th:text="${charityAction.collectedAmount}">0</span>
+                                    <span th:text="${charityAction.currency}">MAD</span>
+                                </div>
+                                <div>
+                                    <i class="fa-solid fa-hand-holding-dollar me-2 text-warning"></i>
+                                    <strong th:text="#{common.donations}"></strong> :
+                                    <span th:text="${#lists.size(donations)}">0</span>
+                                </div>
+                                <div>
+                                    <i class="fa-solid fa-bullseye me-2 text-primary"></i>
+                                    <strong  th:text="#{doantions.goal}"></strong> :
+                                    <span th:text="${charityAction.objectiveAmount}">0</span>
+                                    <span th:text="${charityAction.currency}">MAD</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="program-description" data-aos="fade-up">
+                            <h2 class="mb-4" th:text="${charityAction.title}">Program title</h2>
+                            <p th:utext="${charityAction.description}">Program description goes here.</p>
+
+                            <h3 th:text="#{common.address}"></h3>
+                            <p th:text="${charityAction.location}">Location info</p>
+
+
+                            <p><strong class=""><i class="fa-solid fa-calendar-days me-2 text-primary"></i> <span th:text="#{calendar}"></span> : </strong>
+                                <span th:text="${#dates.format(charityAction.startDate, 'yyyy-MM-dd')}">Start Date</span> <i class="fa-solid fa-arrow-right ms-2 me-2"></i>
+                                <span th:text="${#dates.format(charityAction.endDate, 'yyyy-MM-dd')}">End Date</span>
+                            </p>
+                            <p><strong ><i class="fa-solid fa-envelope me-2 text-primary "></i><span th:text="#{common.email}"></span> :</strong> <span th:text="${organization.email}"></span></p>
+                            <p><strong ><i class="fa-solid fa-phone me-2 text-primary"></i><span th:text="#{common.phone}"></span> :</strong> <span th:text="${organization.phoneNumber}"></span></p>
+                            <p><strong ><i class="fa-solid fa-location-dot me-2 text-primary"></i><span th:text="#{common.address}"></span> :</strong> <span th:text="${charityAction.location}"></span></p>
+
+                        </div>
+
+                        <!-- Organization Details -->
+                        <div class="org-details mt-5 p-4 bg-light rounded-3 " data-aos="fade-up">
+                            <h4 th:text="#{aboutTheOrganization}"></h4>
+                            <div class="org-header d-flex align-items-center justify-content-center mb-4">
+                                <!-- Image Carousel - Replaces the single banner image -->
+                                <div id="orgCarousel" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner px-4">
+                                        <!-- Profile Banner (image_0) as first slide -->
+                                        <div class="carousel-item active">
+                                            <img th:src="${organization.profileBanner} ?: '/images/default-banner.jpg'"
+                                                 class="d-block w-100 card-img-top" alt="Banner" style="width:100% !important; ;height: 400px; object-fit: cover;">
+                                        </div>
+
+                                        <!-- Additional images (image_1 to image_4) -->
+                                        <div th:each="i : ${#numbers.sequence(1, 4)}"
+                                             th:if="${organization.media != null && organization.media.containsKey('image_' + i)}"
+                                             class="carousel-item">
+                                            <img th:src="${organization.media.get('image_' + i)}"
+                                                 class="d-block w-100 card-img-top"
+                                                 style="height: 400px; object-fit: cover;"
+                                                 th:alt="'Organization image ' + ${i}">
+                                        </div>
+                                    </div>
+
+                                    <!-- Only show controls if there are multiple images -->
+                                    <th:block th:if="${organization.media != null && organization.media.size() > 1}">
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#orgCarousel" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#orgCarousel" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </th:block>
+                                </div>
+                            </div>
+                            <h3 class="mb-0" th:text="${organization.name}">Organization Name</h3>
+                            <p th:utext="${organization.htmlContent}">Org mission and info</p>
+                            <p><strong><i class="fa-solid fa-envelope me-2"></i>Email:</strong> <span th:text="${organization.email}"></span></p>
+                            <p><strong><i class="fa-solid fa-phone me-2"></i>Phone:</strong> <span th:text="${organization.phoneNumber}"></span></p>
+                            <p><strong><i class="fa-solid fa-location-dot me-2"></i>Address:</strong> <span th:text="${organization.legalAddress}"></span></p>
+                        </div>
+                    </div>
+
+                    <!-- Right Side Donations -->
+                    <div class="col-12 col-md-6 col-lg-3" style="background-color: #f8f9fa; " data-aos="fade-up">
+                        <div class="donation-box">
+                            <div class="p-3 d-flex justify-content-between align-items-center mb-4 border-1 rounded-5 shadow bg-light">
+                                <i class="fa-solid fa-chart-simple text-danger"></i>
+                                <span th:text="${#lists.size(donations)}">0</span>
+                                <span th:text="#{donations.totalDonations}"> </span>
+                            </div>
+
+                            <h3 th:text="#{donations.recentDonations}"> </h3>
+                            <div class="donor-list" style="max-height: 70vh; overflow-y: auto;">
+                                <div class="donor-card" th:each="donation : ${donations}">
+                                    <div class="donor-info">
+                                        <small th:text="${#dates.format(donation.date, 'yyyy-MM-dd')}">2 days ago</small>
+                                    </div>
+                                    <div class="donor-amount">
+                                        <span th:text="${#numbers.formatDecimal(donation.amount, 2, 'DEFAULT', 2, 'DEFAULT') + ' ' + charityAction.currency}">500 MAD</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center mt-4 mb-2">
+                                <a class="button primary-button mt-3 " href="#">
+                                    <i class="fa-solid fa-share"></i> <span th:text="#{common.share}"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

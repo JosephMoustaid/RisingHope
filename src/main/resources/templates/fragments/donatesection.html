@@ -1,0 +1,49 @@
+<div th:fragment="donatesection">
+    <div class="donate-section rounded-5 mb-2">
+        <!-- Background (replaced by video) -->
+        <div class="background" id="videoContainer" data-aos="fade-right">
+            <img src="/images/food.jpg" alt="Child in need">
+            <button class="play-btn" onclick="loadVideo()">
+                <i class="fa-solid fa-play"></i>
+            </button>
+        </div>
+
+        <!-- Donation Box -->
+        <div class="donate-box" data-aos="fade-left">
+            <p class="label" data-aos="fade-up">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+                <span th:text="#{home.donate.helper}">Help text</span>
+            </p>
+            <h2 th:text="#{home.donate.title}" data-aos="fade-up">Donate Now</h2>
+            <p class="subtext" data-aos="fade-up">
+                <strong>Default Program</strong> — <span th:text="#{home.donate.text}">Support a child in need.</span>
+            </p>
+
+            <input type="text" id="donationInput" placeholder="$100.00" class="donation-input" />
+
+            <div class="amounts" data-aos="fade-up">
+                <button onclick="setDonationAmount(1)">$1.00</button>
+                <button onclick="setDonationAmount(5)" class="active">$5.00</button>
+                <button onclick="setDonationAmount(10)">$10.00</button>
+                <button onclick="setDonationAmount(25)">$25.00</button>
+                <button onclick="setDonationAmount(50)">$50.00</button>
+                <button onclick="setDonationAmount(100)">$100.00</button>
+                <button onclick="setDonationAmount(250)">$250.00</button>
+            </div>
+
+            <form method="GET" th:action="@{'https://donate.stripe.com/test_5kAaFQ43F0j9gN2000'}"
+                  onsubmit="return attachMetaData(event)">
+                <!-- Hidden inputs to attach metadata -->
+                <input type="hidden" id="charityProgramIdInput" name="charity_program_id" value="0" />
+                <input type="hidden" id="donationAmountInput" name="amount" />
+
+                <button class="submit-btn button slide-to-rigth-btn" type="submit">
+        <span class="slide-to-right-span">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            <span th:text="#{home.howToHelp.donate.button}">Donate</span>
+        </span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

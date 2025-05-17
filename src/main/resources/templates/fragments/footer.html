@@ -1,0 +1,76 @@
+<div th:fragment="footer">
+    <footer class="footer text-center text-lg-start bg-light text-muted rounded-top-5" data-aos="fade-up" style="border-top: 1px solid #e3f2fd;">
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <div class="row mt-3">
+
+                    <!-- Logo & About -->
+                    <div class="col-md-4 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <a href="/home" class="d-flex align-items-center mb-4 m-auto m-md-0 d-flex justify-content-center flex-column">
+                            <img src="/images/2-removebg-preview.png" alt="Rising Hope Foundation" width="60" height="60" class="me-2" />
+                            <div>
+                                <h6 class="text-uppercase fw-bold mb-0">Rising Hope</h6>
+                                <p class="mb-3">Foundation</p>
+                            </div>
+                        </a>
+                        <p th:text="#{footer.text}">
+
+                        </p>
+                        <!-- Social Media Links -->
+                        <div class="row mt-4 justify-content-start d-flex align-items-center justify-content-center">
+                            <div class="col-auto text-primary">
+                                <a href="https://facebook.com" target="_blank" class="me-3 text-reset">
+                                    <i class="fab fa-facebook fa-lg" ></i>
+                                </a>
+                                <a href="https://twitter.com" target="_blank" class="me-3 text-reset">
+                                    <i class="fab fa-twitter fa-lg"></i>
+                                </a>
+                                <a href="https://instagram.com" target="_blank" class="me-3 text-reset">
+                                    <i class="fab fa-instagram fa-lg"></i>
+                                </a>
+                                <a href="https://linkedin.com" target="_blank" class="me-3 text-reset">
+                                    <i class="fab fa-linkedin fa-lg"></i>
+                                </a>
+                                <a href="https://youtube.com" target="_blank" class="text-reset">
+                                    <i class="fab fa-youtube fa-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4" th:text="#{footer.quickLinks}"></h6>
+                        <p><a href="/home" class="text-reset" th:text="#{footer.home}"></a></p>
+                        <p><a href="/charities" class="text-reset" th:text="#{footer.charities}"></a></p>
+                        <p><a href="/categories" class="text-reset" th:text="#{footer.categories}"></a></p>
+                        <p><a href="/about" class="text-reset" th:text="#{footer.about}"></a></p>
+                        <p><a href="/contact" class="text-reset" th:text="#{footer.contact}"></a></p>
+                        <p><a href="/faq" class="text-reset" th:text="#{nav.faq}"></a></p>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4" th:text="#{footer.contact}"></h6>
+                        <p><i class="fas fa-home me-3"></i> Morocco, Casablanca, Bd Aljoulane</p>
+                        <p><i class="fas fa-envelope me-3"></i> contact@risinghope.org</p>
+                        <p><i class="fas fa-phone me-3"></i> +(212) 634372762</p>
+                        <p><i class="fas fa-clock me-3"></i> Mon-Fri: 9AM - 5PM</p>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </section>
+
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+            © 2025 Rising Hope Foundation. All rights reserved. | Created by
+            <a href="https://www.youssefmoustaid.me" target="_blank" class="text-reset fw-bold">Youssef Moustaid</a>
+            <span class="mx-2">|</span>
+            <a href="/privacy" class="text-reset">Privacy Policy</a>
+            <span class="mx-2">|</span>
+            <a href="/terms" class="text-reset">Terms of Service</a>
+        </div>
+    </footer>
+</div>

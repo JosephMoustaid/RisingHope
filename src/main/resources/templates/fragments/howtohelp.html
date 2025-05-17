@@ -1,0 +1,70 @@
+<div th:fragment="howtohelp">
+  <section class="py-5 rounded-5 mb-2 " id="howtohelp" style="background-color: #f8f9fa;" >
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="display-5 fw-bold text-primary" data-aos="fade-up" th:text="#{home.howToHelp.title}"></h2>
+        <p class="lead" th:text="#{home.whatWeDo.house.text}" data-aos="fade-up">
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Donate Card -->
+        <div class="col-md-6 col-lg-3" data-aos="fade-up">
+          <div class="help-card card h-100 border-0 shadow-sm p-4 text-center">
+            <div class="icon-wrapper mb-3 mx-auto" >
+              <i class="fas fa-hand-holding-heart fa-2x"></i>
+            </div>
+            <h4 class="fw-bold mb-3" th:text="#{home.howToHelp.donate.title}"></h4>
+            <p class="mb-4" th:text="#{home.howToHelp.donate.text}">
+            </p>
+            <button class="button primary w-100 mt-auto" th:text="#{home.howToHelp.donate.button}">
+            </button>
+          </div>
+        </div>
+
+        <!-- Volunteer Card -->
+        <div class="col-md-6 col-lg-3" data-aos="fade-up">
+          <div class="help-card card h-100 border-0 shadow-sm p-4 text-center">
+            <div class="icon-wrapper mb-3 mx-auto" >
+              <i class="fas fa-users fa-2x"></i>
+            </div>
+            <h4 class="fw-bold mb-3" th:text="#{home.howToHelp.volunteer.title}"></h4>
+            <p class="mb-4" th:text="#{home.howToHelp.volunteer.text}">
+            </p>
+            <button class="button primary w-100 mt-auto" th:text="#{home.howToHelp.volunteer.button}">
+            </button>
+          </div>
+        </div>
+
+        <!-- Advocate Card -->
+        <div class="col-md-6 col-lg-3" data-aos="fade-up">
+          <div class="help-card card h-100 border-0 shadow-sm p-4 text-center">
+            <div class="icon-wrapper mb-3 mx-auto">
+              <i class="fas fa-bullhorn fa-2x"></i>
+            </div>
+            <h4 class="fw-bold mb-3" th:text="#{home.howToHelp.advocate.title}"></h4>
+            <p class="mb-4" th:text="#{home.howToHelp.advocate.text}">
+            </p>
+            <button class="button primary w-100 mt-auto" th:text="#{home.howToHelp.advocate.button}">
+            </button>
+          </div>
+        </div>
+
+        <!-- Share Card -->
+        <div class="col-md-6 col-lg-3" data-aos="fade-up">
+          <div class="help-card card h-100 border-0 shadow-sm p-4 text-center">
+            <div class="icon-wrapper mb-3 mx-auto" >
+              <i class="fas fa-pencil-alt fa-2x"></i>
+            </div>
+            <h4 class="fw-bold mb-3" th:text="#{home.howToHelp.share.title}"></h4>
+            <p class="mb-4" th:text="#{home.howToHelp.share.text}">
+            </p>
+            <button class="button primary w-100 mt-auto" th:text="#{home.howToHelp.share.button}">
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>

@@ -1,0 +1,121 @@
+@use "../_variables" as *;
+
+.contact-section {
+  padding: 4rem 2rem;
+  background-color: #f9f9f9;
+  max-width: 1200px;
+  margin: 0 auto;
+  .contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .contact-left {
+      flex: 1;
+
+      .section-label {
+        color: $primary-color;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+        letter-spacing: 1px;
+      }
+
+      .heading {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #111;
+        margin-bottom: 1rem;
+      }
+
+      .subtext {
+        color: #555;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-details {
+        list-style: none;
+        padding: 0;
+
+        li {
+          margin-bottom: 0.75rem;
+          font-size: 0.95rem;
+
+          a {
+            color: $primary-color;
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+
+    .contact-right {
+      flex: 1;
+
+      .contact-form {
+        background-color: #fff;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+        .form-group {
+          margin-bottom: 1.25rem;
+
+          input,
+          textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+
+            &:focus {
+              border-color:$primary-color;
+              box-shadow: 0 0 0 2px $dark-color;
+            }
+          }
+        }
+
+        .submit-button {
+          background-color: $primary-color;
+          color: #fff;
+          border: none;
+          padding: 0.75rem 1.5rem;
+          font-size: 1rem;
+          font-weight: bold;
+          border-radius: 30px;
+          cursor: pointer;
+          transition: background 0.3s;
+
+          &:hover {
+            background-color: $middark-color;
+          }
+        }
+      }
+    }
+
+  }
+  @media (max-width: 768px) {
+    // Responsive styles for smaller screens
+    .contact-container {
+      flex-direction: column !important;
+      align-items: center;
+
+      .contact-left,
+      .contact-right {
+        flex: 1 1 100%;
+        max-width: 100%;
+        min-width: 80%;
+        text-align: center;
+      }
+    }
+  }
+}

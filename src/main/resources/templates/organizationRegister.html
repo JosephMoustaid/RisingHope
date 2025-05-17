@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{register.orgRegTitle}"></title>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <link rel="icon" href="/images/favicon.ico" />
+    <!-- AOS CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .file-upload-container {
+            margin-bottom: 15px;
+        }
+        .file-upload-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .add-more-btn {
+            margin-top: 10px;
+        }
+        .remove-btn {
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="justify-content-center">
+        <div class="row">
+            <!-- Logo -->
+            <a href="/home">
+                <div class="d-flex justify-content-center">
+                    <img src="/images/banner-log-black-text.png" alt="Logo" class="mb-4" width="200"/>
+                </div>
+            </a>
+
+            <!-- Registration Form -->
+            <h3 class="text-center mb-4" th:text="#{register.orgFormTitle}"></h3>
+            <form th:action="@{/auth/organization/register}" th:object="${organization}" method="post" enctype="multipart/form-data"
+                  novalidate >
+                <!-- Error messages -->
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                    <h5 th:text="#{register.errorsTitle}"></h5>
+                    <ul>
+                        <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+
+                <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+                <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+
+                <div class="row">
+                    <!-- Left Column -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label"><span th:text="#{register.orgName}"></span> <span class="text-danger">*</span></label>
+                            <input type="text" th:field="*{name}" class="form-control"/>
+                            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="legalAddress" class="form-label"><span th:text="#{register.legalAddress}"></span> <span class="text-danger">*</span> </label>
+                            <input type="text" id="legalAddress" th:field="*{legalAddress}" class="form-control" required/>
+                            <div th:if="${#fields.hasErrors('legalAddress')}" th:errors="*{legalAddress}" class="text-danger">Legal Address Error</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phoneNumber" class="form-label" > <span th:text="#{register.phoneNumber}"></span> <span class="text-danger">*</span></label>
+                            <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-control" required/>
+                            <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-danger">Phone Number Error</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">  <span th:text="#{register.email}"></span> <span class="text-danger">*</span></label>
+                            <input type="email" id="email" th:field="*{email}" class="form-control" required/>
+                            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger">Email Error</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label"> <span th:text="#{register.password}"></span> <span class="text-danger">*</span></label>
+                            <input type="password" id="password" th:field="*{password}" class="form-control" required/>
+                            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"  class="text-danger">Password Error</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label"> <span th:text="#{register.confirmPassword}"></span>  <span class="text-danger">*</span></label>
+                            <input type="password" id="confirmPassword" th:field="*{confirmPassword}" class="form-control" required/>
+                            <div th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="text-danger">Confirm Password Error</div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="col-md-6">
+                        <!-- Quill Editor -->
+                        <div class="mb-3">
+                            <label class="form-label"> <span th:text="#{register.orgDescription}"></span><span class="text-danger">*</span></label>
+                            <div id="editor" class="form-control p-0" style="height: 200px;"></div>
+                            <input type="hidden" th:field="*{htmlContent}" id="htmlContent" name="htmlContent"/>
+                            <div th:if="${#fields.hasErrors('htmlContent')}" th:errors="*{htmlContent}" class="text-danger"></div>
+                        </div>
+
+                        <!-- Image Upload -->
+                        <div class="mb-3">
+                            <label class="form-label" th:text="#{register.uploadImages}"></label>
+                            <div id="imageUploadContainer">
+                                <div class="file-upload-container">
+                                    <div class="file-upload-wrapper">
+                                        <input type="file" name="images[]" class="form-control" accept="image/*">
+                                        <span class="remove-btn" onclick="removeUploadField(this)">
+                    <i class="fas fa-times"></i>
+                </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-secondary add-more-btn" onclick="addUploadField()">Add More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="button shadow slide-to-rigth-btn w-100 py-3 fw-bolder">
+                        <span class="slide-to-right-span">
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                            <span th:text="#{register.createAccount}"></span>
+                        </span>
+                    </button>
+                </div>
+                <br />
+                <a href="/auth/login/organization" class="text-center mt-4 text-primary pt-3" th:text="#{register.alreadyHaveOrgAccount}">Login</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script>
+    // Initialize Quill editor
+    const quill = new Quill('#editor', {
+        theme: 'snow',
+        modules: {
+            toolbar: [
+                [{ 'header': [1, 2, false] }],
+                ['bold', 'italic', 'underline'],
+                ['link', 'image'],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }]
+            ]
+        },
+        placeholder: 'Describe your organization...'
+    });
+
+    // Sync editor content to hidden input before form submission
+    function prepareForm() {
+        document.getElementById('htmlContent').value = quill.root.innerHTML;
+        return true;
+    }
+
+    // Image upload management
+    let uploadCount = 1;
+    const maxUploads = 5;
+
+    function addUploadField() {
+        if (uploadCount >= maxUploads) {
+            alert(`Maximum ${maxUploads} images allowed`);
+            return;
+        }
+        const container = document.getElementById('imageUploadContainer');
+        const newUpload = document.createElement('div');
+        newUpload.className = 'file-upload-container';
+        newUpload.innerHTML = `
+            <div class="file-upload-wrapper">
+                <input type="file" name="images[]" class="form-control" accept="image/*">
+                <span class="remove-btn" onclick="removeUploadField(this)">
+                    <i class="fas fa-times"></i>
+                </span>
+            </div>
+        `;
+        container.appendChild(newUpload);
+        uploadCount++;
+    }
+
+    function removeUploadField(element) {
+        const container = document.getElementById('imageUploadContainer');
+        if (container.children.length > 1) {
+            element.closest('.file-upload-container').remove();
+            uploadCount--;
+        }
+    }
+
+    document.querySelector('form').addEventListener('submit', function (e) {
+        const quillHtml = quill.root.innerHTML;
+
+        // OPTIONAL DEBUG LOG
+        console.log("Quill content length:", quillHtml.length);
+        console.log("Quill HTML preview:", quillHtml.slice(0, 200)); // only log part
+
+        document.getElementById('htmlContent').value = quillHtml;
+    });
+    // Initialize AOS (Animate On Scroll)
+    AOS.init({
+        duration: 1000, // Animation duration in ms
+        once: true,     // Whether animation should happen only once
+    });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

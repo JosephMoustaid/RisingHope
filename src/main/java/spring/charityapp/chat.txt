@@ -1,0 +1,432 @@
+package spring.charityapp.model;
+
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.GenericGenerator;
+import spring.charityapp.common.Gender;
+import spring.charityapp.common.Status;
+import spring.charityapp.service.Bcrypt;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+@Slf4j
+@Data
+@Entity
+@Table(name = "\"user\"")  // Notice the escaped quotes
+@NoArgsConstructor
+public class User implements spring.charityapp.blueprints.IUser, spring.charityapp.blueprints.IAuth {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment in the database
+    private Integer id;
+
+    @Column(nullable = false)
+    private String firstname;
+    @Column(nullable = false)
+    private String lastname;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+    @Column(nullable = false)
+    private String email;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Transaction> transactions = new ArrayList<>();
+
+    // we have the hashed password here
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+
+    private String profile;
+
+    // == All args constructor ==
+    public User( String firstname , String lastname,
+                Gender gender, String email,
+                String password, Status status , String profile) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.gender = gender;
+        this.status = status;
+        this.email = email;
+        setPassword(password);
+        this.profile = profile;
+    }
+
+
+    public void modifierProfile(Map<String, String> details) {
+        this.firstname = details.get("firstname");
+        this.lastname = details.get("lastname");
+        this.gender = Gender.valueOf(details.get("gender"));
+        // here we use the crypted password
+        this.password = Bcrypt.hashPassword(details.get("password"));
+        this.status = Status.valueOf(details.get("status"));
+    }
+
+    public void setPassword(String password){
+        this.password = Bcrypt.hashPassword(password);
+        log.info("Password has been set");
+    }
+    public boolean checkPassword(String plainPassword){
+        return Bcrypt.checkPassword(plainPassword , this.password);
+    }
+    public void consultHistory() {
+        // TODO implement here
+    }
+    public void deleteAccount() {
+        // TODO implement here
+    }
+    public boolean login(String email, String password) {
+        return this.email.equals(email) && checkPassword(password);
+    }
+    public void register(Map<String, String> details) {
+        this.id = Integer.parseInt(details.get("id"));
+        this.firstname = details.get("firstname");
+        this.lastname = details.get("lastname");
+        this.gender = Gender.valueOf(details.get("gender"));
+        this.email = details.get("email");
+        // we use the crypted password
+        setPassword(details.get("password"));
+        this.status = Status.ACTIVE ;
+        log.info("User has been registered succesfully");
+    }
+    public void logout() {
+        // TODO implement her
+    }
+    public void resetPassword(String email) {
+        // TODO implement here
+    }
+    public void addToHistory(CharityAction charityAction) {
+
+    }
+    public void removeFromHistory(CharityAction charityAction) {
+
+    }
+}package spring.charityapp.model;
+
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.GenericGenerator;
+import spring.charityapp.common.ActionState;
+import spring.charityapp.common.PaymentMethod;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
+import java.util.*;
+
+@Getter @Setter
+@Entity
+@Table(name = "transaction")
+@NoArgsConstructor
+@Slf4j
+public class Transaction {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment in the database
+    private Integer id;
+
+    @Column(nullable = false)
+    private Float some;
+
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
+    private Date date;
+
+    @Temporal(TemporalType.TIME)
+    @Column(nullable = false)
+    private LocalTime time; // Using LocalTime instead of java.sql.Time
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "charity_action_id")
+    private CharityAction charityAction;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
+    @Column(nullable = false)
+    private Float amount;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private PaymentMethod paymentMethod;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private ActionState state;
+
+    @Column(nullable = false)
+    private String referenceNumber;
+
+    public void update(Map<String, String> details) {
+        try {
+            this.some = Float.parseFloat(details.get("some"));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            this.date = sdf.parse(details.get("date"));
+
+            this.time = LocalTime.parse(details.get("time")); // Using LocalTime.parse() instead of Time constructor
+
+            this.referenceNumber = details.get("referenceNumber");
+            this.amount = Float.parseFloat(details.get("amount")); // Fixed typo here
+
+            if (this.charityAction == null) {
+                throw new IllegalStateException("CharityAction is required");
+            }
+            log.info("Transaction number {} * updated", this.id);
+
+        } catch (ParseException | NumberFormatException | DateTimeParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
+    public void setUser(User user) {
+        this.user = user;
+        if (user != null && !user.getTransactions().contains(this)) {
+            user.getTransactions().add(this);
+        }
+    }
+
+    public void setCharityAction(CharityAction charityAction) {
+        this.charityAction = charityAction;
+        if (charityAction != null && !charityAction.getDonations().contains(this)) {
+            charityAction.getDonations().add(this);
+        }
+    } */
+}
+package spring.charityapp.model;
+
+import jakarta.persistence.*;
+import lombok.*;
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+import spring.charityapp.common.ActionState;
+import spring.charityapp.common.Category;
+
+import java.util.*;
+
+@Slf4j
+@Getter
+@Setter // Instead of @Data
+@Entity
+@Table(name = "charity_action")
+@NoArgsConstructor
+@AllArgsConstructor
+public class CharityAction implements spring.charityapp.blueprints.ICharityAction {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment in the database
+    private Integer id;
+
+    @Column(nullable = false)
+    private String title;
+
+    @Column(columnDefinition = "TEXT") // Store long text
+    private String description;
+
+    @Temporal(TemporalType.DATE) // Store only date (no time)
+    private Date startDate;
+
+    private String location;
+    private String objective;
+    private Float total;
+
+    @Type(JsonBinaryType.class)
+    @Column(columnDefinition = "jsonb")
+    private Map<String, String> medias;
+
+    private Float collectedAmount;
+
+
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "charityAction", fetch = FetchType.LAZY)
+    private List<Transaction> donations = new ArrayList<>();
+
+    @Enumerated(EnumType.STRING) // Store enum as String
+    private Category category;
+
+    @Enumerated(EnumType.STRING)
+    private ActionState actionState;
+
+    public void update(Map<String, String> details) {
+        this.title = details.get("title");
+        this.description = details.get("description");
+        this.location = details.get("location");
+        this.objective = details.get("objective");
+
+        if (Float.parseFloat(details.get("Total")) >= 0)
+            this.total = Float.parseFloat(details.get("Total"));
+
+        this.medias = new HashMap<>();
+        for (Map.Entry<String, String> entry : details.entrySet()) {
+            if (entry.getKey().contains("media")) {
+                this.medias.put(entry.getKey(), entry.getValue());
+            }
+        }
+
+        this.startDate = new Date(details.get("startDate"));
+        this.endDate = new Date(details.get("endDate"));
+        this.category = Category.valueOf(details.get("category"));
+
+        log.info("CharityAction has been updated");
+    }
+
+    public void archive(ActionState state) {
+        this.actionState = state;
+        log.info("Action has been archived to: {} " , this.actionState);
+    }
+
+    public void consult() {
+        log.info(this.toString());
+    }
+
+    public void donate(User user, Transaction transaction) {
+        this.collectedAmount += transaction.getAmount();
+        this.donations.add(transaction); // Add to the list
+        log.info("Donation made by: {}  with amount: {} " , user , transaction.getAmount());
+    }
+
+    public String getTotalDonations() {
+        float total = 0;
+        for (Transaction transaction : this.donations) {
+            total += transaction.getAmount();
+        }
+        return "Total donation is " + total;
+    }
+}
+
+package spring.charityapp.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+import spring.charityapp.model.User;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Integer> {
+
+    // Basic CRUD operations are inherited from JpaRepository
+
+    // 1. Find by email (exact match)
+    Optional<User> findByEmail(String email);
+
+    // 2. Find by name components
+    List<User> findByLastname(String lastname);
+    List<User> findByFirstnameAndLastname(String firstname, String lastname);
+
+    // 3. Find top donors
+    @Query("SELECT u FROM User u JOIN u.transactions d GROUP BY u ORDER BY SUM(d.amount) DESC LIMIT 10")
+    List<User> findTopDonors();
+
+    // 4. Find users with donations above a certain amount
+    @Query("SELECT DISTINCT u FROM User u JOIN u.transactions d WHERE d.amount > :minAmount")
+    List<User> findUsersWithDonationsAbove(@Param("minAmount") double minAmount);
+
+    // 5. Custom update operation
+    @Modifying
+    @Query("UPDATE User u SET u.firstname = :firstname, u.lastname = :lastname WHERE u.id = :id")
+    int updateUserDetails(@Param("id") UUID id,
+                          @Param("firstname") String firstname,
+                          @Param("lastname") String lastname);
+
+
+    // 7. Search by name pattern
+    List<User> findByFirstnameContainingOrLastnameContaining(String firstnamePattern, String lastnamePattern);
+
+    // 8. Check if email exists (for registration validation)
+    boolean existsByEmail(String email);
+}
+package spring.charityapp.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import spring.charityapp.model.Organization;
+import spring.charityapp.common.Status;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+@Repository
+public interface OrganizationRepository extends JpaRepository<Organization, Integer> {
+
+    // Find by email (for login/auth)
+    Optional<Organization> findByEmail(String email);
+
+    // Check if an email already exists (for registration validation)
+    boolean existsByEmail(String email);
+
+    // Find all organizations by validation status
+    List<Organization> findByValidated(Boolean validated);
+
+    // Find by status (PENDING, APPROVED, REJECTED)
+    List<Organization> findByStatus(Status status);
+
+    // Search by name containing (case-insensitive)
+    List<Organization> findByNameContainingIgnoreCase(String name);
+
+    // For admin or super-admin to approve/review unapproved organizations
+    List<Organization> findByValidatedFalseAndStatus(Status status);
+}
+package spring.charityapp.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import spring.charityapp.model.Transaction;
+import spring.charityapp.common.ActionState;
+import spring.charityapp.common.PaymentMethod;
+
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+@Repository
+public interface TransactionRepository extends JpaRepository<Transaction, Integer> {
+
+    // Find all by user ID
+    List<Transaction> findByUserId(UUID userId);
+
+    // Find all by Charity Action ID
+    List<Transaction> findByCharityActionId(UUID charityActionId);
+
+    // Find all by date
+    List<Transaction> findByDate(Date date);
+
+    // Find all by payment method
+    List<Transaction> findByPaymentMethod(PaymentMethod paymentMethod);
+
+    // Find all by state
+    List<Transaction> findByState(ActionState state);
+
+    // Find by reference number
+    Transaction findByReferenceNumber(String referenceNumber);
+
+    // Optional: Top donations for a specific charity action
+    List<Transaction> findTop5ByCharityActionIdOrderByAmountDesc(UUID charityActionId);
+}
